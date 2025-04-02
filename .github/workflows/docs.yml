@@ -55,10 +55,3 @@ jobs:
         PYTHONUNBUFFERED: 1
       run: |
         mkdocs build
-    
-    # Upload the built documentation
-    - name: Upload documentation
-      uses: actions/upload-artifact@v1
-      with:
-        name: site-documentation
-        path: site
