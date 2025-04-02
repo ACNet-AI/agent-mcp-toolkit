@@ -62,4 +62,3 @@ jobs:
       with:
         name: site-documentation
         path: site
-        retention-days: 30
