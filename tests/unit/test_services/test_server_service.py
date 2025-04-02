@@ -1,9 +1,9 @@
 """Server Service Unit Tests"""
 
+import importlib
 from unittest.mock import MagicMock, patch
 
 import pytest
-import importlib
 
 from langchain_mcp_toolkit.services.server_service import MCPServerService, ServerProtocol
 
