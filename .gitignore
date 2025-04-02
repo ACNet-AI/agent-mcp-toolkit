@@ -26,6 +26,7 @@ env/
 ENV/
 .venv/
 .env/
+list/
 
 # IDE configuration files
 .idea/
@@ -46,4 +47,9 @@ ENV/
 # Project specific
 *.log
 .DS_Store
-docs/ 
+
+# Documentation build output
+site/
+
+# Unusual nested directory
+agent-mcp-toolkit/ 
