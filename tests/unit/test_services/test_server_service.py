@@ -3,6 +3,7 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
+import importlib
 
 from langchain_mcp_toolkit.services.server_service import MCPServerService, ServerProtocol
 
@@ -372,33 +373,17 @@ class TestMCPServerService:
 
     def test_create_custom_server_fastmcp_import_error(self) -> None:
         """Test import error when creating FastMCP server"""
-        # Use patch context manager to mock import error
-        import builtins
-        original_import = builtins.__import__
 
+        # Define import error mock
         def mock_import_error(name, *args, **kwargs):
             if "mcp.server.fastmcp" in name:
                 raise ImportError("Failed to import FastMCP")
-            return original_import(name, *args, **kwargs)
+            return importlib.__import__(name, *args, **kwargs)
 
+        # Test with patched import function
         with patch("builtins.__import__", side_effect=mock_import_error):
             with pytest.raises(RuntimeError, match="Failed to import server type 'fastmcp'"):
                 MCPServerService._create_custom_server(None, "fastmcp")  # None as self parameter
-
-    def test_create_custom_server_localmcp_import_error(self) -> None:
-        """Test import error when creating LocalMCP server"""
-        # Use patch context manager to mock import error
-        import builtins
-        original_import = builtins.__import__
-
-        def mock_import_error(name, *args, **kwargs):
-            if "mcp.server.localmcp" in name:
-                raise ImportError("Failed to import LocalMCP")
-            return original_import(name, *args, **kwargs)
-
-        with patch("builtins.__import__", side_effect=mock_import_error):
-            with pytest.raises(RuntimeError, match="Failed to import server type 'localmcp'"):
-                MCPServerService._create_custom_server(None, "localmcp")  # None as self parameter
 
     def test_create_custom_server_other_error(self) -> None:
         """Test other error when creating custom server"""
@@ -414,16 +399,6 @@ class TestMCPServerService:
         with patch("mcp.server.fastmcp.FastMCP", side_effect=Exception("Failed to create FastMCP")):
             with pytest.raises(RuntimeError, match="Failed to create server type 'fastmcp'"):
                 MCPServerService._create_custom_server(None, "fastmcp")  # None as self parameter
-
-    def test_create_localmcp_server_other_error(self) -> None:
-        """Test other error when creating LocalMCP server"""
-        # Use module-level patch instead of trying to import non-existent module directly
-        with patch.dict('sys.modules', {'mcp.server.localmcp': MagicMock()}):
-
-            # Now it's safe to patch LocalMCP
-            with patch('mcp.server.localmcp.LocalMCP', side_effect=Exception("Failed to create LocalMCP")):
-                with pytest.raises(RuntimeError, match="Failed to create server type 'localmcp'"):
-                    MCPServerService._create_custom_server(None, "localmcp")  # None as self parameter
 
     @pytest.mark.asyncio
     async def test_async_start_server_success(self) -> None:

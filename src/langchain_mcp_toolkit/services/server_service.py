@@ -194,7 +194,7 @@ class MCPServerService:
         Internal method for creating custom MCP server instance based on specified type.
 
         Parameters:
-            server_type: Server type, such as "fastmcp", "localmcp", etc.
+            server_type: Server type, such as "fastmcp", etc.
 
         Returns:
             Any: Custom type MCP server instance
@@ -208,11 +208,6 @@ class MCPServerService:
                 from mcp.server.fastmcp import FastMCP
 
                 return FastMCP()
-            elif server_type.lower() == "localmcp":
-                # Try to import and create LocalMCP server
-                from mcp.server.localmcp import LocalMCP  # type: ignore
-
-                return LocalMCP()
             else:
                 raise ValueError(f"Unsupported server type: {server_type}")
         except ImportError as e:
