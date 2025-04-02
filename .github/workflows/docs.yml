@@ -56,10 +56,10 @@ jobs:
       run: |
         mkdocs build
     
-    # Save documentation as an artifact for download
-    - name: Upload docs as artifact
-      uses: actions/upload-artifact@v3
+    # Upload the built documentation
+    - name: Upload documentation
+      uses: actions/upload-artifact@v2
       with:
-        name: documentation
-        path: './site'
+        name: site-documentation
+        path: site
         retention-days: 30
