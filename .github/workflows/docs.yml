@@ -58,7 +58,7 @@ jobs:
     
     # Upload the built documentation
     - name: Upload documentation
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v1
       with:
         name: site-documentation
         path: site
