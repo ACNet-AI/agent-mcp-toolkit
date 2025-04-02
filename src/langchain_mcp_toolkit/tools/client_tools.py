@@ -516,7 +516,7 @@ class ClientGetPromptTool(MCPBaseTool):
             raise ValueError("Client service not set")
 
         # Default arguments - empty dictionary
-        arguments = {}
+        arguments: dict[str, Any] = {}
         return await self.client_service.get_prompt(prompt_name, arguments, server_name)
 
 
