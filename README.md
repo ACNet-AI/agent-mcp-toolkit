@@ -20,17 +20,18 @@ A library of tools for Agent frameworks to interact with MCP (Model Context Prot
 ## Installation
 
 ```bash
-# Standard installation
+# For users: Standard installation with pip
 pip install agent-mcp-toolkit
 
-# Install from source
-git clone https://github.com/acnet-ai/agent-mcp-toolkit.git
-cd agent-mcp-toolkit
-pip install -e .
+# Alternatively, use uv for faster installation
+# pip install uv  # If you don't have uv installed
+uv pip install agent-mcp-toolkit
 
-# Install test dependencies
-pip install agent-mcp-toolkit[test]
+# Install optional dependencies
+pip install agent-mcp-toolkit[extra]  # Or: uv pip install agent-mcp-toolkit[extra]
 ```
+
+For development setup, see [Development Environment](#development-environment) section.
 
 ## Quick Start
 
@@ -205,6 +206,93 @@ A: Yes, the toolkit provides `get_langchain_tools()` and `get_langchain_prompt()
 - **Async Support**: Provides both synchronous and asynchronous APIs
 - **Multi-server Architecture**: Connect to and manage multiple MCP servers simultaneously
 - **Framework Agnostic**: Works with various agent frameworks while offering optimized LangChain integration
+
+## Development Environment
+
+### Setup for Development
+
+We recommend using a virtual environment and installing the package in development mode:
+
+```bash
+# Clone the repository
+git clone https://github.com/acnet-ai/agent-mcp-toolkit.git
+cd agent-mcp-toolkit
+
+# Create and activate a virtual environment
+python -m venv .venv
+# On Windows:
+# .venv\Scripts\activate
+# On macOS/Linux:
+source .venv/bin/activate
+
+# Install development dependencies
+pip install -e ".[dev,test]"
+```
+
+### Using uv (Recommended)
+
+We recommend using [uv](https://github.com/astral-sh/uv), a faster Python package installer and resolver:
+
+```bash
+# Install uv if you don't have it
+pip install uv
+
+# Create and activate virtual environment
+uv venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install the package with all development dependencies
+uv pip install -e ".[dev,test]"
+```
+
+### Dependency Management
+
+The project uses modern Python dependency management with `pyproject.toml`. Key dependencies include:
+
+- Python 3.10+
+- MCP SDK 1.4.1 to 1.5.0
+- LangChain 0.3.20+
+- LangGraph 0.3.21+
+
+For development and contribution, you can lock dependencies for reproducible environments:
+
+```bash
+# With uv (recommended)
+uv pip compile pyproject.toml -o requirements.lock
+
+# With pip-tools
+pip-compile pyproject.toml -o requirements.lock
+```
+
+### Development Workflow
+
+This project uses several tools to ensure code quality:
+
+```bash
+# Install development dependencies
+uv pip install -e ".[dev]"
+
+# Run linting
+ruff check .
+
+# Run type checking
+mypy src
+
+# Run tests
+pytest
+
+# Run all checks
+make check
+```
+
+For Git workflow, we recommend setting up pre-commit hooks:
+
+```bash
+# Install pre-commit hooks
+pre-commit install
+```
+
+The pre-commit hooks will automatically run linting and formatting checks before each commit.
 
 ## Related Links
 
