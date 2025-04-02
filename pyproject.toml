@@ -39,6 +39,7 @@ test = [
     "mypy>=1.9.0",
     "pytest-socket>=0.7.0",
     "pytest-asyncio>=0.25.0",
+    "pytest-cov>=5.0.0",
     "types-setuptools>=69.1.0",
 ]
 dev = [
