@@ -1,6 +1,6 @@
-# MCP Toolkit
+# Agent MCP Toolkit
 
-LangChain MCP Toolkit is a Python package that provides a set of tools and services for interacting with the MCP (Memorizing Conversation Protocol) system.
+Agent MCP Toolkit is a Python package that provides a set of tools and services for integrating Model Context Protocol (MCP) with agent frameworks.
 
 ## Overview
 
@@ -13,10 +13,11 @@ This toolkit offers:
 
 ## Getting Started
 
-Check the [Installation](installation.md) guide to get started with MCP Toolkit.
+Check the [Installation](installation.md) guide to get started with Agent MCP Toolkit.
 
 ## Documentation
 
-- [API Reference](api/client_service.md): Detailed documentation of the toolkit's components
+- [API Reference](api/toolkit.md): Detailed documentation of the toolkit's components
 - [Examples](examples.md): Example usage scenarios
-- [Contributing](contributing.md): Guidelines for contributing to the project 
+- [Contributing](https://github.com/ACNet-AI/agent-mcp-toolkit/blob/main/CONTRIBUTING.md): Guidelines for contributing to the project
+- [Changelog](https://github.com/ACNet-AI/agent-mcp-toolkit/blob/main/CHANGELOG.md): Version update history 

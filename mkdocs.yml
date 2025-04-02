@@ -1,5 +1,5 @@
-site_name: MCP Toolkit
-site_description: LangChain MCP Toolkit Documentation
+site_name: Agent MCP Toolkit
+site_description: Agent MCP Toolkit Documentation
 repo_url: https://github.com/ACNet-AI/agent-mcp-toolkit
 repo_name: ACNet-AI/agent-mcp-toolkit
 
@@ -44,10 +44,9 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - API Reference:
+    - Main Toolkit: api/toolkit.md
     - Client Service: api/client_service.md
     - Server Service: api/server_service.md
     - Tools: api/tools.md
     - Factory: api/factory.md
-  - Examples: examples.md
-  - Contributing: contributing.md
-  - Changelog: changelog.md 
+  - Examples: examples.md 
