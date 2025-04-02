@@ -1,4 +1,4 @@
-name: Build and Deploy Docs
+name: Build Docs
 
 on:
   push:
@@ -14,11 +14,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# Explicitly declare permissions needed for GitHub Pages deployment
+# Adjust permissions to read-only
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: read
+  packages: read
 
 jobs:
   docs:
@@ -57,18 +56,10 @@ jobs:
       run: |
         mkdocs build
     
-    # Use official GitHub Pages deployment action instead of peaceiris/actions-gh-pages
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
+    # Save documentation as an artifact for download
+    - name: Upload docs as artifact
+      uses: actions/upload-artifact@v3
       with:
-        enablement: true
-    
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
+        name: documentation
         path: './site'
-    
-    - name: Deploy to GitHub Pages
-      id: deployment
-      if: github.ref == 'refs/heads/main'
-      uses: actions/deploy-pages@v4
+        retention-days: 30
