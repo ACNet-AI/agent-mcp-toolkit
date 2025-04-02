@@ -1,0 +1,53 @@
+site_name: MCP Toolkit
+site_description: LangChain MCP Toolkit Documentation
+repo_url: https://github.com/ACNet-AI/agent-mcp-toolkit
+repo_name: ACNet-AI/agent-mcp-toolkit
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          selection:
+            docstring_style: google
+          rendering:
+            show_source: true
+            show_root_heading: true
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - pymdownx.critic
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - API Reference:
+    - Client Service: api/client_service.md
+    - Server Service: api/server_service.md
+    - Tools: api/tools.md
+    - Factory: api/factory.md
+  - Examples: examples.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md 
